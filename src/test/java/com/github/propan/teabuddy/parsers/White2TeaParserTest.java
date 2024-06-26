@@ -3,6 +3,7 @@ package com.github.propan.teabuddy.parsers;
 import com.github.propan.teabuddy.models.ItemType;
 import com.github.propan.teabuddy.models.StoreListItem;
 import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -13,17 +14,37 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class White2TeaParserTest {
 
     @Test
+    @Tag("integration")
+    void integration() throws IOException {
+        White2TeaParser parser = new White2TeaParser();
+
+        java.net.URL url = URI.create(parser.getStorePages().findFirst().orElse("")).toURL();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        StringBuilder response = new StringBuilder();
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+
+        in.close();
+
+        List<StoreListItem> items = parser.parse(response.toString());
+
+        assertThat(items).isNotEmpty();
+    }
+
+    @Test
     void parse() throws URISyntaxException, IOException {
         java.net.URL url = White2TeaParser.class.getResource("white2tea.html");
-
-        if (url == null) {
-            fail("white2tea.html not found");
-        }
+        assertThat(url).isNotNull();
 
         java.nio.file.Path resPath = java.nio.file.Paths.get(url.toURI());
 

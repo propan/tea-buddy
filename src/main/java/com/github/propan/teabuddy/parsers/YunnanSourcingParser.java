@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class YunnanSourcingParser extends AbstractShopifyParser {
 
@@ -23,15 +25,22 @@ public class YunnanSourcingParser extends AbstractShopifyParser {
     }
 
     @Override
-    public String getStoreUrl() {
-        return "https://yunnansourcing.com/collections/new-products";
+    public Stream<String> getStorePages() {
+        return Stream.generate(new Supplier<>() {
+            private int page = 1;
+
+            @Override
+            public String get() {
+                return String.format("%s/collections/new-products?page=%d&grid_list=grid-view", BASE_URL, page++);
+            }
+        });
     }
 
     @Override
     public List<StoreListItem> extractProducts(Map<String, ShopifyUtils.Product> metadata, Element body) throws DataProcessingException {
         Elements items = body.select(".productitem");
         if (items.isEmpty()) {
-            throw new DataProcessingException(String.format("No product information found on the page %s", getStoreUrl()));
+            throw new DataProcessingException(String.format("No product information found on the page %s", getStorePages()));
         }
 
         List<StoreListItem> products = new ArrayList<>();

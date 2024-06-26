@@ -19,13 +19,13 @@ public abstract class AbstractShopifyParser implements StoreParser {
         try {
             metadata = ShopifyUtils.extractProductsMeta(doc);
         } catch (JsonProcessingException e) {
-            throw new DataProcessingException(String.format("Failed to extract products meta from page %s", getStoreUrl()), e);
+            throw new DataProcessingException(String.format("Failed to extract products meta from store %s", getStoreName()), e);
         }
 
         List<StoreListItem> products = extractProducts(metadata, doc.body());
 
         if (products.isEmpty()) {
-            throw new DataProcessingException(String.format("No products found on the page %s", getStoreUrl()));
+            throw new DataProcessingException(String.format("No products found on the %s store page", getStoreName()));
         }
 
         return products;

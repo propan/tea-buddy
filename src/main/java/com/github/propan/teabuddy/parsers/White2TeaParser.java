@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class White2TeaParser extends AbstractShopifyParser {
 
@@ -23,15 +25,22 @@ public class White2TeaParser extends AbstractShopifyParser {
     }
 
     @Override
-    public String getStoreUrl() {
-        return "https://white2tea.com/collections/latest-additions";
+    public Stream<String> getStorePages() {
+        return Stream.generate(new Supplier<>() {
+            private int page = 1;
+
+            @Override
+            public String get() {
+                return String.format("%s/collections/latest-additions?page=%d", BASE_URL, page++);
+            }
+        });
     }
 
     @Override
     public List<StoreListItem> extractProducts(Map<String, ShopifyUtils.Product> metadata, Element body) throws DataProcessingException {
         Elements items = body.select("div.product-wrap");
         if (items.isEmpty()) {
-            throw new DataProcessingException(String.format("No product information found on the page %s", getStoreUrl()));
+            throw new DataProcessingException(String.format("No product information found on the page %s", getStorePages()));
         }
 
         List<StoreListItem> products = new ArrayList<>();
