@@ -1,8 +1,15 @@
+buildscript {
+    dependencies {
+        classpath 'com.h2database:h2:2.2.220'
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.0'
     id 'io.spring.dependency-management' version '1.1.5'
     id 'org.jooq.jooq-codegen-gradle' version '3.19.10'
+    id 'org.flywaydb.flyway' version '10.0.0'
 }
 
 group = 'com.github.propan'
@@ -26,24 +33,61 @@ repositories {
 }
 
 dependencies {
+    runtimeOnly 'com.h2database:h2:2.2.220'
+    implementation 'org.flywaydb:flyway-core:10.15.0'
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
     implementation 'org.jsoup:jsoup:1.17.2'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    jooqCodegen
+    jooqCodegen 'com.h2database:h2:2.2.224'
+}
+
+flyway {
+    url = "jdbc:h2:file:${projectDir}/data/tea_buddy"
+    user = 'sa'
+    password = ''
+    cleanDisabled = false
+    baselineOnMigrate = true
+    defaultSchema = 'PUBLIC'
 }
 
 jooq {
     configuration {
+        jdbc {
+            driver = 'org.h2.Driver'
+            url = "jdbc:h2:file:${projectDir}/data/tea_buddy"
+            user = 'sa'
+            password = ''
+        }
+        generator {
+            database {
+                name = 'org.jooq.meta.h2.H2Database'
+                inputSchema = 'PUBLIC'
+                includes = '.*'
+                excludes = 'flyway_schema_history'
+
+                forcedTypes {
+                    forcedType {
+                        userType = "com.github.propan.teabuddy.models.ItemType"
+                        enumConverter = true
+                        includeExpression = "items.type"
+                    }
+                    forcedType {
+                        userType = "com.github.propan.teabuddy.models.Store"
+                        enumConverter = true
+                        includeExpression = "items.store"
+                    }
+                }
+            }
+            target {
+                packageName = "com.github.propan.teabuddy.repository.jooq"
+                directory = "./src/main/java"
+            }
+        }
     }
 }
 
