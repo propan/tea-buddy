@@ -1,12 +1,17 @@
 package com.github.propan.teabuddy.repository;
 
+import com.github.propan.teabuddy.models.Crawler;
 import com.github.propan.teabuddy.parsers.White2TeaParser;
+import com.github.propan.teabuddy.repository.jooq.tables.records.CrawlersRecord;
 import org.jooq.DSLContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
 import org.springframework.test.context.jdbc.Sql;
+
+import static com.github.propan.teabuddy.repository.jooq.Tables.CRAWLERS;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @JooqTest(
         properties = {
@@ -30,6 +35,40 @@ class CrawlerRepositoryImplTest {
 
     @Test
     void shouldRegisterCrawler() {
-        repository.registerCrawler("testStore", White2TeaParser.class.getName());
+        repository.registerCrawler("registerTest", White2TeaParser.class.getName());
     }
+
+    @Test
+    void shouldFindExecutableCrawler() {
+        repository.registerCrawler("executableTest", White2TeaParser.class.getName());
+
+        Crawler crawler = repository.findExecutableCrawler();
+        assertThat(crawler).isNotNull();
+        assertThat(crawler.className()).isEqualTo(White2TeaParser.class.getName());
+
+        // consecutive call should return null
+        assertThat(repository.findExecutableCrawler()).isNull();
+    }
+
+    @Test
+    void shouldDisableCrawler() {
+        repository.registerCrawler("disableTest", White2TeaParser.class.getName());
+
+        CrawlersRecord record = dsl.selectFrom(CRAWLERS)
+                .where(CRAWLERS.NAME.eq(White2TeaParser.class.getName()))
+                .fetchOne();
+        assertThat(record).isNotNull();
+
+        repository.disableCrawler(record.getId());
+
+        record = dsl.selectFrom(CRAWLERS)
+                .where(CRAWLERS.NAME.eq(White2TeaParser.class.getName()))
+                .fetchOne();
+        assertThat(record).isNotNull();
+        assertThat(record.getEnabled()).isFalse();
+
+        // consecutive call should return null
+        assertThat(repository.findExecutableCrawler()).isNull();
+    }
+
 }
