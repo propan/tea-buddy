@@ -8,11 +8,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+@Component
 public class White2TeaParser extends AbstractShopifyParser {
 
     private final static String BASE_URL = "https://white2tea.com";
