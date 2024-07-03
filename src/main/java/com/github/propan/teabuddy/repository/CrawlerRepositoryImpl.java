@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class CrawlerRepositoryImpl implements CrawlerRepository {
     }
 
     @Override
-    public Crawler findExecutableCrawler() {
+    public Optional<Crawler> findExecutableCrawler() {
         int nextCrawlAt = MIN_CRAWLING_TIMEOUT_MINUTES + random.nextInt(CRAWL_JITTER_MINUTES);
 
         CrawlersRecord result = this.context.update(CRAWLERS)
@@ -53,9 +54,9 @@ public class CrawlerRepositoryImpl implements CrawlerRepository {
                 .fetchOne();
 
         if (result == null) {
-            return null;
+            return Optional.empty();
         } else {
-            return new Crawler(result.getId(), result.getName());
+            return Optional.of(new Crawler(result.getId(), result.getName()));
         }
     }
 

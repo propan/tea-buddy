@@ -2,6 +2,7 @@ package com.github.propan.teabuddy.repository;
 
 import com.github.propan.teabuddy.models.Crawler;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface CrawlerRepository {
@@ -10,6 +11,6 @@ public interface CrawlerRepository {
 
     void disableCrawler(UUID id);
 
-    Crawler findExecutableCrawler();
+    Optional<Crawler> findExecutableCrawler();
 
 }

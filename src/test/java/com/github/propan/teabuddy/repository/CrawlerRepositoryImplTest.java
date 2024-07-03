@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.Optional;
+
 import static com.github.propan.teabuddy.repository.jooq.Tables.CRAWLERS;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -42,12 +44,13 @@ class CrawlerRepositoryImplTest {
     void shouldFindExecutableCrawler() {
         repository.registerCrawler("executableTest", White2TeaParser.class.getName());
 
-        Crawler crawler = repository.findExecutableCrawler();
-        assertThat(crawler).isNotNull();
-        assertThat(crawler.className()).isEqualTo(White2TeaParser.class.getName());
+        Optional<Crawler> crawler = repository.findExecutableCrawler();
+        assertThat(crawler).isNotEmpty().hasValueSatisfying(c -> {
+            assertThat(c.className()).isEqualTo(White2TeaParser.class.getName());
+        });
 
         // consecutive call should return null
-        assertThat(repository.findExecutableCrawler()).isNull();
+        assertThat(repository.findExecutableCrawler()).isEmpty();
     }
 
     @Test
@@ -68,7 +71,7 @@ class CrawlerRepositoryImplTest {
         assertThat(record.getEnabled()).isFalse();
 
         // consecutive call should return null
-        assertThat(repository.findExecutableCrawler()).isNull();
+        assertThat(repository.findExecutableCrawler()).isEmpty();
     }
 
 }
