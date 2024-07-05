@@ -1,8 +1,11 @@
 package com.github.propan.teabuddy.repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.propan.teabuddy.models.Crawler;
 import com.github.propan.teabuddy.repository.jooq.tables.records.CrawlersRecord;
 import org.jooq.DSLContext;
+import org.jooq.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +18,8 @@ import static com.github.propan.teabuddy.repository.jooq.Tables.CRAWLERS;
 
 @Repository
 public class CrawlerRepositoryImpl implements CrawlerRepository {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     private final DSLContext context;
     private final Random random;
@@ -65,5 +70,18 @@ public class CrawlerRepositoryImpl implements CrawlerRepository {
                 .set(CRAWLERS.ENABLED, Boolean.FALSE)
                 .where(CRAWLERS.ID.eq(id))
                 .execute();
+    }
+
+    @Override
+    public void writeCrawlingResult(UUID crawlerId, Crawler.ExecutionResult result) {
+        try {
+            this.context.update(CRAWLERS)
+                    .set(CRAWLERS.LAST_CRAWLED_AT, LocalDateTime.now())
+                    .set(CRAWLERS.LAST_RESULT, JSON.json(mapper.writeValueAsString(result)))
+                    .where(CRAWLERS.ID.eq(crawlerId))
+                    .execute();
+        } catch (JsonProcessingException e) {
+            throw new RepositoryException("Failed to serialize execution result", e);
+        }
     }
 }

@@ -1,9 +1,11 @@
 package com.github.propan.teabuddy.repository;
 
 import com.github.propan.teabuddy.models.Crawler;
+import com.github.propan.teabuddy.parsers.StoreParser;
 import com.github.propan.teabuddy.parsers.White2TeaParser;
 import com.github.propan.teabuddy.repository.jooq.tables.records.CrawlersRecord;
 import org.jooq.DSLContext;
+import org.jooq.JSON;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +59,7 @@ class CrawlerRepositoryImplTest {
     void shouldDisableCrawler() {
         repository.registerCrawler("disableTest", White2TeaParser.class.getName());
 
-        CrawlersRecord record = dsl.selectFrom(CRAWLERS)
-                .where(CRAWLERS.NAME.eq(White2TeaParser.class.getName()))
-                .fetchOne();
+        CrawlersRecord record = getCrawler(White2TeaParser.class);
         assertThat(record).isNotNull();
 
         repository.disableCrawler(record.getId());
@@ -74,4 +74,24 @@ class CrawlerRepositoryImplTest {
         assertThat(repository.findExecutableCrawler()).isEmpty();
     }
 
+    @Test
+    void shouldWriteCrawlingResult() {
+        repository.registerCrawler("resultTest", White2TeaParser.class.getName());
+
+        CrawlersRecord record = getCrawler(White2TeaParser.class);
+        assertThat(record).isNotNull();
+
+        repository.writeCrawlingResult(record.getId(), new Crawler.ExecutionResult(Crawler.Result.SUCCESS, ""));
+
+        record = getCrawler(White2TeaParser.class);
+        assertThat(record).isNotNull();
+
+        assertThat(record.getLastResult()).isEqualTo(JSON.json("{\"result\":\"SUCCESS\",\"details\":\"\"}"));
+    }
+
+    private CrawlersRecord getCrawler(Class<? extends StoreParser> parserType) {
+        return dsl.selectFrom(CRAWLERS)
+                .where(CRAWLERS.NAME.eq(parserType.getName()))
+                .fetchOne();
+    }
 }

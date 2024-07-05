@@ -11,6 +11,8 @@ public interface CrawlerRepository {
 
     void disableCrawler(UUID id);
 
+    void writeCrawlingResult(UUID crawlerId, Crawler.ExecutionResult result);
+
     Optional<Crawler> findExecutableCrawler();
 
 }
