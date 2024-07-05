@@ -2,6 +2,8 @@ package com.github.propan.teabuddy.models;
 
 import org.apache.logging.log4j.util.Strings;
 
+import java.util.UUID;
+
 public record StoreListItem(Store store, String vendor, String title, ItemType type, String sourceUrl, String imageUrl,
                             String price) {
 
@@ -13,6 +15,10 @@ public record StoreListItem(Store store, String vendor, String title, ItemType t
                 && Strings.isNotBlank(sourceUrl)
                 && Strings.isNotBlank(imageUrl)
                 && Strings.isNotBlank(price);
+    }
+
+    public UUID id() {
+        return UUID.nameUUIDFromBytes(sourceUrl().getBytes());
     }
 
     @Override
