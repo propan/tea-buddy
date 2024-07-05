@@ -30,7 +30,7 @@ public class CrawlerService {
     private static final Logger log = LoggerFactory.getLogger(CrawlerService.class);
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    public static final int MAX_CRAWL_DEPTH = 1;
+    public static final int MAX_CRAWL_DEPTH = 5;
 
     private final List<StoreParser> parsers;
     private final CrawlerRepository crawlerRepository;
@@ -53,10 +53,12 @@ public class CrawlerService {
         }
     }
 
-    @Scheduled(fixedRate = 30, timeUnit = TimeUnit.SECONDS)
+    @Scheduled(fixedRate = 60, timeUnit = TimeUnit.SECONDS)
     public void crawlStore() {
         this.findNextTask().ifPresent(taskMeta -> {
             StoreParser parser = taskMeta.parser();
+
+            log.debug("Crawling store: {}", parser.getStoreName());
 
             try {
                 int newItemsTotal = 0;
@@ -66,11 +68,16 @@ public class CrawlerService {
                     int newItemsCount = this.itemsRepository.storeItems(products);
                     newItemsTotal += newItemsCount;
 
+                    log.debug("Found {} new items on page: {}", newItemsCount, pageUrl);
+
                     if (newItemsCount < products.size()) {
                         // there are known items on the page, we can stop crawling
                         break;
                     }
                 }
+
+                log.debug("Crawling finished, found {} new items", newItemsTotal);
+
                 this.crawlerRepository.writeCrawlingResult(
                         taskMeta.crawlerId(), Crawler.ExecutionResult.success("Found %d items", newItemsTotal)
                 );
