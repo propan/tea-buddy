@@ -1,6 +1,7 @@
 package com.github.propan.teabuddy.parsers;
 
 import com.github.propan.teabuddy.models.ItemType;
+import com.github.propan.teabuddy.models.Store;
 import com.github.propan.teabuddy.models.StoreListItem;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Tag;
@@ -52,6 +53,7 @@ class YunnanSourcingParserTest {
 
         assertIterableEquals(Lists.list(
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Gao Jia Shan",
                         "2013 Gao Jia Shan \"Waffle Cut\" Qian Liang Hei Cha Tea - 1 Cake (600 Grams)",
                         ItemType.DARK_TEA,
@@ -60,6 +62,7 @@ class YunnanSourcingParserTest {
                         "72.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Feng Qing Premium \"Black Gold Pearls\" Black Tea - 1 kilogram / Spring 2024",
                         ItemType.BLACK_TEA,
@@ -68,6 +71,7 @@ class YunnanSourcingParserTest {
                         "109.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Hand-Made Flowering Black Tea Cones from Feng Qing - 1 Kilogram / Spring 2024",
                         ItemType.BLACK_TEA,
@@ -76,6 +80,7 @@ class YunnanSourcingParserTest {
                         "109.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Zheng Shan Xiao Zhong of Wu Yi Fujian Black Tea - 1 kilogram / Spring 2024",
                         ItemType.BLACK_TEA,
@@ -84,6 +89,7 @@ class YunnanSourcingParserTest {
                         "75.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Phoenix Village \"Mi Xiang\" Shui Xian Oolong Tea - 1 kilogram / Spring 2024",
                         ItemType.OOLONG_TEA,
@@ -92,6 +98,7 @@ class YunnanSourcingParserTest {
                         "95.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "High Mountain \"Lao Cong Huang Zhi Xiang\" Dan Cong Oolong Tea - 1 Tin (15 Grams) / Spring 2024",
                         ItemType.OOLONG_TEA,
@@ -100,6 +107,7 @@ class YunnanSourcingParserTest {
                         "16.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Titanium Flask for Brewing Tea - Silver",
                         ItemType.TEAWARE,
@@ -108,6 +116,7 @@ class YunnanSourcingParserTest {
                         "70.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Ice Jade Porcelain \"Spring Bounty\" Gaiwan and Cups - 1 Gaiwan and 2 Cups",
                         ItemType.TEAWARE,
@@ -116,6 +125,7 @@ class YunnanSourcingParserTest {
                         "46.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Rainbow Morning Titanium Tea Cups - 6 Cup Set (One Color of Each)",
                         ItemType.TEAWARE,
@@ -124,6 +134,7 @@ class YunnanSourcingParserTest {
                         "45.00$"
                 ),
                 new StoreListItem(
+                        Store.YUNNAN_SOURCING,
                         "Yunnan Sourcing Tea Shop",
                         "Titanium Strainer With Hardwood Handle - Silver",
                         ItemType.TEAWARE,

@@ -1,6 +1,7 @@
 package com.github.propan.teabuddy.parsers;
 
 import com.github.propan.teabuddy.models.ItemType;
+import com.github.propan.teabuddy.models.Store;
 import com.github.propan.teabuddy.models.StoreListItem;
 import org.apache.commons.lang3.StringUtils;
 
@@ -71,7 +72,13 @@ public class White2TeaParser extends AbstractShopifyParser {
             ShopifyUtils.Variant bestVariant = meta.getBestVariant();
 
             StoreListItem product = new StoreListItem(
-                    meta.vendor, bestVariant.getNormalizedName(), ItemType.fromString(meta.type), storeUrl, imageUrl, bestVariant.getDisplayPrice()
+                    Store.WHITE2TEA,
+                    meta.vendor,
+                    bestVariant.getNormalizedName(),
+                    ItemType.fromString(meta.type),
+                    storeUrl,
+                    imageUrl,
+                    bestVariant.getDisplayPrice()
             );
 
             if (!product.isValid()) {

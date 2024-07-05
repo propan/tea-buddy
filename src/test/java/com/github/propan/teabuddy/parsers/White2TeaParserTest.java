@@ -1,6 +1,7 @@
 package com.github.propan.teabuddy.parsers;
 
 import com.github.propan.teabuddy.models.ItemType;
+import com.github.propan.teabuddy.models.Store;
 import com.github.propan.teabuddy.models.StoreListItem;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Tag;
@@ -52,6 +53,7 @@ class White2TeaParserTest {
 
         assertIterableEquals(Lists.list(
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Philtre - 200g",
                         ItemType.RAW_PUER_TEA,
@@ -60,6 +62,7 @@ class White2TeaParserTest {
                         "46.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Philtre Minis - ~7g",
                         ItemType.RAW_PUER_TEA,
@@ -68,6 +71,7 @@ class White2TeaParserTest {
                         "1.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Judy - 200g",
                         ItemType.WHITE_TEA,
@@ -76,6 +80,7 @@ class White2TeaParserTest {
                         "73.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Judy Minis - ~7g",
                         ItemType.WHITE_TEA,
@@ -84,6 +89,7 @@ class White2TeaParserTest {
                         "2.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Teadontlie - 200g",
                         ItemType.RAW_PUER_TEA,
@@ -92,6 +98,7 @@ class White2TeaParserTest {
                         "80.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Teadontlie Minis - ~7g",
                         ItemType.RAW_PUER_TEA,
@@ -100,6 +107,7 @@ class White2TeaParserTest {
                         "2.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Tihkal - 200g",
                         ItemType.RAW_PUER_TEA,
@@ -108,6 +116,7 @@ class White2TeaParserTest {
                         "113.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Tihkal Minis - ~7g",
                         ItemType.RAW_PUER_TEA,
@@ -116,6 +125,7 @@ class White2TeaParserTest {
                         "4.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Penetralia - 200g",
                         ItemType.BLACK_TEA,
@@ -124,6 +134,7 @@ class White2TeaParserTest {
                         "60.95$"
                 ),
                 new StoreListItem(
+                        Store.WHITE2TEA,
                         "white2tea",
                         "2024 Penetralia Minis - ~7g",
                         ItemType.BLACK_TEA,

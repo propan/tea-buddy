@@ -2,11 +2,12 @@ package com.github.propan.teabuddy.models;
 
 import org.apache.logging.log4j.util.Strings;
 
-public record StoreListItem(String vendor, String title, ItemType type, String sourceUrl, String imageUrl,
+public record StoreListItem(Store store, String vendor, String title, ItemType type, String sourceUrl, String imageUrl,
                             String price) {
 
     public boolean isValid() {
-        return Strings.isNotBlank(vendor)
+        return store != null &&
+                Strings.isNotBlank(vendor)
                 && Strings.isNotBlank(title)
                 && type != null
                 && Strings.isNotBlank(sourceUrl)
@@ -17,6 +18,7 @@ public record StoreListItem(String vendor, String title, ItemType type, String s
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");
+        sb.append("store='").append(store).append('\'');
         sb.append("vendor='").append(vendor).append('\'');
         sb.append(", title='").append(title).append('\'');
         sb.append(", type=").append(type);
