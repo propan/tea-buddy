@@ -3,7 +3,6 @@ package com.github.propan.teabuddy.repository;
 import com.github.propan.teabuddy.models.Crawler;
 import com.github.propan.teabuddy.repository.jooq.tables.records.CrawlersRecord;
 import org.jooq.DSLContext;
-import org.jooq.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
