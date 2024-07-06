@@ -9,6 +9,8 @@ import org.jooq.InsertValuesStep8;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,5 +53,22 @@ public class ItemsRepositoryImpl implements ItemsRepository {
             );
         }
         return insert.onDuplicateKeyIgnore().execute();
+    }
+
+    @Override
+    public List<StoreListItem> findNewItemsSince(LocalDateTime ts) {
+        return context.selectFrom(ITEMS)
+                .where(ITEMS.CREATED_AT.gt(ts))
+                .fetchStream()
+                .map(record -> new StoreListItem(
+                        record.getStore(),
+                        record.getVendor(),
+                        record.getTitle(),
+                        record.getType(),
+                        record.getSourceUrl(),
+                        record.getImageUrl(),
+                        record.getPrice()
+                ))
+                .toList();
     }
 }
