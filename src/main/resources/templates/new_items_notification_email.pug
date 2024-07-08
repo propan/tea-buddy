@@ -1,0 +1,48 @@
+html
+    head
+        title Tea Buddy - New Items Notification
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    body(width="100%" bgcolor="#ffffff" style="margin: 0;")
+        center(style="width: 100%; background: #ffffff;")
+            div(style="max-width: 680px; margin: auto;")
+                table(style="max-width: 680px;")
+                    tbody
+                        tr
+                            td(style="padding: 20px 10px;")
+                        tr
+                            td(bgcolor="#ffffff" style="font-family: sans-serif; font-size: 14px; padding: 20px 15px 10px 13px; color: #464646; line-height: 20px;")
+                                p(style="padding: 0 0 10px 0; margin: 0; color: #333;")
+                                    | Hello #{recipient.name()},
+                                p(style="padding: 0 0 5px 0; margin: 0;")
+                                    | I've got some news for you. I just found a few new tea related items you might be interested in!
+                        tr
+                            td(bgcolor="#ffffff" style="padding: 0 10px;")
+                                table(style="border:1px solid #eaeaea; width: 100%;")
+                                    thead
+                                        tr
+                                            th(align="left" bgcolor="#EAEAEA" style="font-family: sans-serif; font-size: 14px; padding:5px 9px;")
+                                                | Item
+                                            th(align="center" bgcolor="#EAEAEA" width="100px" style="font-family: sans-serif; font-size: 14px; padding:5px 9px;")
+                                                | Price
+                                    tbody
+                                        each group, pos in groups
+                                            - let headerBorder = pos == 0 ? 'border-bottom:1px solid #eaeaea;' : 'border-top:1px solid #eaeaea; border-bottom:1px solid #eaeaea;'
+                                            - let groupSize = group.items().size()
+                                            tr
+                                                th(align="left" valign="center" colspan="2" style=`font-family: sans-serif; font-size: 13px; padding:5px 9px; background-color: #f9f9f9; ${headerBorder}`)
+                                                    | #{group.store()}
+                                            each item, index in group.items()
+                                                 - let border = index == (groupSize - 1) ? '' : 'border-bottom:1px dotted #cccccc;'
+                                                 tr
+                                                     td(align="left" valign="top" style=`font-family: sans-serif; font-size: 13px; padding:5px 9px; ${border}`)
+                                                         a(href=item.sourceUrl() style="color: #F07860; text-decoration: none;") #{item.title()}
+                                                     td(align="center" valign="top" style=`font-family: sans-serif; font-size: 13px; padding:5px 9px; ${border}`)
+                                                         | #{item.price()}
+                        tr
+                            td(bgcolor="#ffffff" style="font-family: sans-serif; font-size: 14px; padding: 20px 13px 10px 13px; color: #464646; line-height: 20px;")
+                                p(style="padding: 0 0 5px 0; margin: 0;")
+                                    | Always searching for you,
+                                p(style="padding: 0 0 5px 0; margin: 0; color: #444;")
+                                    | Tea Buddy.
+                        tr
+                            td(style="padding: 20px 10px;")

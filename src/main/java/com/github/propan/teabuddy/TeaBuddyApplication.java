@@ -1,5 +1,7 @@
 package com.github.propan.teabuddy;
 
+import de.neuland.pug4j.PugConfiguration;
+import de.neuland.pug4j.spring.template.SpringTemplateLoader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,22 @@ public class TeaBuddyApplication {
                 .version(HttpClient.Version.HTTP_2)
                 .connectTimeout(Duration.ofSeconds(5))
                 .build();
+    }
+
+    @Bean
+    public SpringTemplateLoader templateLoader() {
+        SpringTemplateLoader templateLoader = new SpringTemplateLoader();
+        templateLoader.setTemplateLoaderPath("classloader:/templates/");
+        return templateLoader;
+    }
+
+    @Bean
+    public PugConfiguration pugConfiguration() {
+        PugConfiguration configuration = new PugConfiguration();
+        configuration.setPrettyPrint(true);
+        configuration.setCaching(true);
+        configuration.setTemplateLoader(templateLoader());
+        return configuration;
     }
 
     public static void main(String[] args) {
