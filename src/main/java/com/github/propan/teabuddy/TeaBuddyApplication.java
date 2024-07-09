@@ -1,5 +1,7 @@
 package com.github.propan.teabuddy;
 
+import com.mailjet.client.ClientOptions;
+import com.mailjet.client.MailjetClient;
 import de.neuland.pug4j.PugConfiguration;
 import de.neuland.pug4j.spring.template.SpringTemplateLoader;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +22,15 @@ public class TeaBuddyApplication {
                 .version(HttpClient.Version.HTTP_2)
                 .connectTimeout(Duration.ofSeconds(5))
                 .build();
+    }
+
+    @Bean
+    public MailjetClient mailjetClient() {
+        ClientOptions options = ClientOptions.builder()
+                .apiKey(System.getenv("MJ_APIKEY_PUBLIC"))
+                .apiSecretKey(System.getenv("MJ_APIKEY_PRIVATE"))
+                .build();
+        return new MailjetClient(options);
     }
 
     @Bean
