@@ -1,7 +1,7 @@
 package com.github.propan.teabuddy.service;
 
 import com.github.propan.teabuddy.models.ItemGroup;
-import com.github.propan.teabuddy.models.Recipient;
+import com.github.propan.teabuddy.models.Contact;
 import de.neuland.pug4j.PugConfiguration;
 import de.neuland.pug4j.template.PugTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class TemplateService {
         this.configuration = configuration;
     }
 
-    public String renderNotificationEmail(Recipient recipient, List<ItemGroup> groups) throws IOException {
+    public String renderNotificationEmail(Contact recipient, List<ItemGroup> groups) throws IOException {
         PugTemplate template = configuration.getTemplate("new_items_notification_email.pug");
         return configuration.renderTemplate(template, Map.of(
                 "recipient", recipient,

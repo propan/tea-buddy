@@ -37,7 +37,7 @@ class TemplateServiceTest {
     @Test
     void renderNotificationEmail() throws IOException {
         String result = templateService.renderNotificationEmail(
-                Recipient.of("Dale Cooper", "bob@twinpeaks.com"),
+                Contact.of("Dale Cooper", "bob@twinpeaks.com"),
                 List.of(
                         new ItemGroup(
                                 Store.WHITE2TEA,
