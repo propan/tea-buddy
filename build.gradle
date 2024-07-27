@@ -6,8 +6,9 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'application'
     id 'org.springframework.boot' version '3.3.0'
-    id 'io.spring.dependency-management' version '1.1.5'
+    id 'io.spring.dependency-management' version '1.1.6'
     id 'org.jooq.jooq-codegen-gradle' version '3.19.10'
     id 'org.flywaydb.flyway' version '10.0.0'
 }
@@ -15,9 +16,15 @@ plugins {
 group = 'com.github.propan'
 version = '0.0.1-SNAPSHOT'
 
+application {
+    mainClass = 'com.github.propan.teabuddy.TeaBuddyApplication'
+}
+
 java {
+    sourceCompatibility = JavaVersion.VERSION_21
+
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(22)
     }
 }
 

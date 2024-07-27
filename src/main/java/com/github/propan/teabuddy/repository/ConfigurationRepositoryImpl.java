@@ -22,14 +22,22 @@ public class ConfigurationRepositoryImpl implements ConfigurationRepository {
     @PostConstruct
     public void init() {
         try {
-            InternetAddress address = new InternetAddress(System.getenv("NOTIFICATION_SENDER"));
+            String senderEnv = System.getenv("NOTIFICATION_SENDER");
+            if (senderEnv == null) {
+                throw new IllegalStateException("NOTIFICATION_SENDER is not set");
+            }
+            InternetAddress address = new InternetAddress(senderEnv);
             sender = Contact.of(address.getPersonal(), address.getAddress());
         } catch (AddressException ex) {
             log.error("Failed to parse NOTIFICATION_SENDER", ex);
         }
 
         try {
-            InternetAddress[] addresses = InternetAddress.parse(System.getenv("NOTIFICATION_RECIPIENTS"));
+            String notificationRecipientsEnv = System.getenv("NOTIFICATION_RECIPIENTS");
+            if (notificationRecipientsEnv == null) {
+                throw new IllegalStateException("NOTIFICATION_RECIPIENTS is not set");
+            }
+            InternetAddress[] addresses = InternetAddress.parse(notificationRecipientsEnv);
             for (InternetAddress address : addresses) {
                 recipients.add(Contact.of(address.getPersonal(), address.getAddress()));
             }
