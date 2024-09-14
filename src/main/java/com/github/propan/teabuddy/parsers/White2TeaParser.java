@@ -41,7 +41,7 @@ public class White2TeaParser extends AbstractShopifyParser {
 
     @Override
     public List<StoreListItem> extractProducts(Map<String, ShopifyUtils.Product> metadata, Element body) throws DataProcessingException {
-        Elements items = body.select("div.product-wrap");
+        Elements items = body.select(".product-block");
         if (items.isEmpty()) {
             throw new DataProcessingException(String.format("No product information found on the page %s", getStorePages()));
         }
@@ -49,20 +49,13 @@ public class White2TeaParser extends AbstractShopifyParser {
         List<StoreListItem> products = new ArrayList<>();
 
         for (Element item : items) {
-            if (item.parent() == null) {
+            String productId = item.attr("data-product-id");
+            if (StringUtils.isEmpty(productId)) {
                 continue;
             }
 
-            String productId = Arrays.
-                    stream(StringUtils.split(item.parent().attribute("class").getValue(), " "))
-                    .map(StringUtils::trim)
-                    .filter(s -> s.startsWith("product-"))
-                    .map(s -> StringUtils.stripStart(s, "product-"))
-                    .findFirst()
-                    .orElse("");
-
-            String imageUrl = Utils.makeAbsoluteUrl(BASE_URL, item.select(".image-element__wrap img").attr("data-src"));
-            String storeUrl = Utils.makeAbsoluteUrl(BASE_URL, item.select("a.product-info__caption").attr("href"));
+            String imageUrl = Utils.makeAbsoluteUrl(BASE_URL, Utils.cleanImageLink(item.select("img.theme-img").attr("src")));
+            String storeUrl = Utils.makeAbsoluteUrl(BASE_URL, item.select("a.product-link").attr("href"));
 
             ShopifyUtils.Product meta = metadata.get(productId);
             if (meta == null) {

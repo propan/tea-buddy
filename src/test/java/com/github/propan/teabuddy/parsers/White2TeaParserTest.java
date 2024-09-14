@@ -55,92 +55,74 @@ class White2TeaParserTest {
                 new StoreListItem(
                         Store.WHITE2TEA,
                         "white2tea",
-                        "2024 Philtre - 200g",
+                        "2024 Anzac - 200g",
                         ItemType.RAW_PUER_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-philtre",
-                        "https://white2tea.com/cdn/shop/files/2024Philtre-Raw-Puer-tea_1600x.jpg?v=1716700025",
-                        "46.95$"
+                        "https://white2tea.com/collections/latest-additions/products/2024-anzac",
+                        "https://white2tea.com/cdn/shop/files/2024AnzacHuangpian.jpg?v=1719468591",
+                        "16.95$"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
                         "white2tea",
-                        "2024 Philtre Minis - ~7g",
+                        "2024 Anzac Minis - ~7g",
                         ItemType.RAW_PUER_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-philtre-minis",
-                        "https://white2tea.com/cdn/shop/files/2024PhiltreMinis_1600x.jpg?v=1716699952",
-                        "1.95$"
+                        "https://white2tea.com/collections/latest-additions/products/2024-anzac-minis",
+                        "https://white2tea.com/cdn/shop/files/2024AnzacMinis-huangpian.jpg?v=1719468586",
+                        "0.95$"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
                         "white2tea",
-                        "2024 Judy - 200g",
-                        ItemType.WHITE_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-judy",
-                        "https://white2tea.com/cdn/shop/files/2024JudyWhiteTea_1600x.jpg?v=1716699819",
-                        "73.95$"
-                ),
-                new StoreListItem(
-                        Store.WHITE2TEA,
-                        "white2tea",
-                        "2024 Judy Minis - ~7g",
-                        ItemType.WHITE_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-judy-mini",
-                        "https://white2tea.com/cdn/shop/files/2024JudyMinis_1600x.jpg?v=1716699726",
-                        "2.95$"
-                ),
-                new StoreListItem(
-                        Store.WHITE2TEA,
-                        "white2tea",
-                        "2024 Teadontlie - 200g",
+                        "2024 Bellwether - 200g",
                         ItemType.RAW_PUER_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-teadontlie",
-                        "https://white2tea.com/cdn/shop/files/2024Teadontlie-sheng-Puerh-tea_1600x.jpg?v=1716449501",
-                        "80.95$"
+                        "https://white2tea.com/collections/latest-additions/products/2024-bellwether",
+                        "https://white2tea.com/cdn/shop/files/2024-Bellwether-raw-Puer-Tea.jpg?v=1719468152",
+                        "108.95$"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
                         "white2tea",
-                        "2024 Teadontlie Minis - ~7g",
+                        "2024 Bellwether Minis - ~7g",
                         ItemType.RAW_PUER_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-teadontlie-minis",
-                        "https://white2tea.com/cdn/shop/files/2024TeadontlieMinis_1600x.jpg?v=1716449482",
-                        "2.95$"
-                ),
-                new StoreListItem(
-                        Store.WHITE2TEA,
-                        "white2tea",
-                        "2024 Tihkal - 200g",
-                        ItemType.RAW_PUER_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-tihkal",
-                        "https://white2tea.com/cdn/shop/files/2024TikhalrawPuer-2_1600x.jpg?v=1716449118",
-                        "113.95$"
-                ),
-                new StoreListItem(
-                        Store.WHITE2TEA,
-                        "white2tea",
-                        "2024 Tihkal Minis - ~7g",
-                        ItemType.RAW_PUER_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-tihkal-minis",
-                        "https://white2tea.com/cdn/shop/files/2024TikhalMinis_1600x.jpg?v=1717041162",
+                        "https://white2tea.com/collections/latest-additions/products/2024-bellwether-minis",
+                        "https://white2tea.com/cdn/shop/files/2024BellwetherMinis.jpg?v=1719468161",
                         "4.95$"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
                         "white2tea",
-                        "2024 Penetralia - 200g",
-                        ItemType.BLACK_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-penetralia",
-                        "https://white2tea.com/cdn/shop/files/2024PenetraliaSunDriedBlackTea_1600x.jpg?v=1716446912",
-                        "60.95$"
+                        "2024 All Fine, All Crime - 200g",
+                        ItemType.RAW_PUER_TEA,
+                        "https://white2tea.com/collections/latest-additions/products/2024-all-fine-all-crime",
+                        "https://white2tea.com/cdn/shop/files/2024-2024Allfineallcrime-sheng-puer-Tea.jpg?v=1719467686",
+                        "78.95$"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
                         "white2tea",
-                        "2024 Penetralia Minis - ~7g",
-                        ItemType.BLACK_TEA,
-                        "https://white2tea.com/collections/latest-additions/products/2024-penetralia-minis",
-                        "https://white2tea.com/cdn/shop/files/2024PenetraliaMinis_1600x.jpg?v=1716446894",
+                        "2024 All Fine, All Crime Minis - ~7g",
+                        ItemType.RAW_PUER_TEA,
+                        "https://white2tea.com/collections/latest-additions/products/2024-all-fine-all-crime-minis",
+                        "https://white2tea.com/cdn/shop/files/2024-AllfineallcrimeminisTea.jpg?v=1719467683",
                         "2.95$"
+                ),
+                new StoreListItem(
+                        Store.WHITE2TEA,
+                        "white2tea",
+                        "2024 Green Hype - 200g",
+                        ItemType.RAW_PUER_TEA,
+                        "https://white2tea.com/collections/latest-additions/products/2024-green-hype",
+                        "https://white2tea.com/cdn/shop/files/2024GreenHype.jpg?v=1719467293",
+                        "33.95$"
+                ),
+                new StoreListItem(
+                        Store.WHITE2TEA,
+                        "white2tea",
+                        "2024 Green Hype Minis - ~7g",
+                        ItemType.RAW_PUER_TEA,
+                        "https://white2tea.com/collections/latest-additions/products/2024-green-hype-minis",
+                        "https://white2tea.com/cdn/shop/files/2024-Tea.jpg?v=1719467282",
+                        "1.95$"
                 )
         ), items);
 

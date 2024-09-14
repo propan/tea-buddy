@@ -25,7 +25,7 @@ public record StoreListItem(Store store, String vendor, String title, ItemType t
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");
         sb.append("store='").append(store).append('\'');
-        sb.append("vendor='").append(vendor).append('\'');
+        sb.append(", vendor='").append(vendor).append('\'');
         sb.append(", title='").append(title).append('\'');
         sb.append(", type=").append(type);
         sb.append(", sourceUrl='").append(sourceUrl).append('\'');
