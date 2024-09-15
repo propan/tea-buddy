@@ -27,8 +27,8 @@ public class TeaBuddyApplication {
     @Bean
     public MailjetClient mailjetClient() {
         ClientOptions options = ClientOptions.builder()
-                .apiKey(System.getenv("MJ_APIKEY_PUBLIC"))
-                .apiSecretKey(System.getenv("MJ_APIKEY_PRIVATE"))
+                .apiKey(System.getenv("MAILJET_KEY"))
+                .apiSecretKey(System.getenv("MAILJET_SECRET"))
                 .build();
         return new MailjetClient(options);
     }
