@@ -36,7 +36,7 @@ public class EmailService {
 
         for (Contact recipient : to) {
             try {
-                String emailBody = this.templateService.renderNotificationEmail(from, groups);
+                String emailBody = this.templateService.renderNotificationEmail(recipient, groups);
 
                 TransactionalEmail message = TransactionalEmail.builder()
                         .to(new SendContact(recipient.email(), recipient.name()))
@@ -49,6 +49,7 @@ public class EmailService {
                 requestBuilder.message(message);
             } catch (Exception e) {
                 log.error("Failed to render email", e);
+                continue;
             }
 
             try {

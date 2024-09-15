@@ -36,7 +36,7 @@ public class TeaBuddyApplication {
     @Bean
     public SpringTemplateLoader templateLoader() {
         SpringTemplateLoader templateLoader = new SpringTemplateLoader();
-        templateLoader.setTemplateLoaderPath("classloader:/templates/");
+        templateLoader.setTemplateLoaderPath("classpath:/templates/");
         return templateLoader;
     }
 
