@@ -16,4 +16,11 @@ public class Utils {
         }
         return widthPattern.matcher(url).replaceAll("");
     }
+
+    public static String normalizePrice(String price) {
+        if (price.startsWith("$") || price.endsWith("€")) {
+            return price.substring(1)+price.charAt(0);
+        }
+        return price;
+    }
 }

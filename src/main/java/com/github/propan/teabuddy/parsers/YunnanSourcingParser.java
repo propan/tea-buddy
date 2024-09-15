@@ -43,7 +43,7 @@ public class YunnanSourcingParser extends AbstractShopifyParser {
     public List<StoreListItem> extractProducts(Map<String, ShopifyUtils.Product> metadata, Element body) throws DataProcessingException {
         Elements items = body.select(".productitem");
         if (items.isEmpty()) {
-            throw new DataProcessingException(String.format("No product information found on the page %s", getStorePages()));
+            throw new DataProcessingException(String.format("No product information found on the page %s", getStoreName()));
         }
 
         List<StoreListItem> products = new ArrayList<>();

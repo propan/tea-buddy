@@ -3,7 +3,8 @@ package com.github.propan.teabuddy.models;
 public enum Store {
 
     WHITE2TEA("White2Tea"),
-    YUNNAN_SOURCING("Yunnan Sourcing");
+    YUNNAN_SOURCING("Yunnan Sourcing"),
+    BITTERLEAF_TEAS("Bitterleaf Teas");
 
     private final String name;
 
