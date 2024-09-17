@@ -95,7 +95,7 @@ public class BitterleafTeasParser implements StoreParser {
             String price = "";
             Element productPrice = item.select(".price .amount").last();
             if (productPrice != null) {
-                price = Utils.normalizePrice(productPrice.text());
+                price = productPrice.text();
             }
 
 

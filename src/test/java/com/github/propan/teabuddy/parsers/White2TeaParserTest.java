@@ -59,7 +59,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-anzac",
                         "https://white2tea.com/cdn/shop/files/2024AnzacHuangpian.jpg?v=1719468591",
-                        "16.95$"
+                        "$16.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -68,7 +68,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-anzac-minis",
                         "https://white2tea.com/cdn/shop/files/2024AnzacMinis-huangpian.jpg?v=1719468586",
-                        "0.95$"
+                        "$0.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -77,7 +77,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-bellwether",
                         "https://white2tea.com/cdn/shop/files/2024-Bellwether-raw-Puer-Tea.jpg?v=1719468152",
-                        "108.95$"
+                        "$108.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -86,7 +86,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-bellwether-minis",
                         "https://white2tea.com/cdn/shop/files/2024BellwetherMinis.jpg?v=1719468161",
-                        "4.95$"
+                        "$4.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -95,7 +95,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-all-fine-all-crime",
                         "https://white2tea.com/cdn/shop/files/2024-2024Allfineallcrime-sheng-puer-Tea.jpg?v=1719467686",
-                        "78.95$"
+                        "$78.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -104,7 +104,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-all-fine-all-crime-minis",
                         "https://white2tea.com/cdn/shop/files/2024-AllfineallcrimeminisTea.jpg?v=1719467683",
-                        "2.95$"
+                        "$2.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -113,7 +113,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-green-hype",
                         "https://white2tea.com/cdn/shop/files/2024GreenHype.jpg?v=1719467293",
-                        "33.95$"
+                        "$33.95"
                 ),
                 new StoreListItem(
                         Store.WHITE2TEA,
@@ -122,7 +122,7 @@ class White2TeaParserTest {
                         ItemType.RAW_PUER_TEA,
                         "https://white2tea.com/collections/latest-additions/products/2024-green-hype-minis",
                         "https://white2tea.com/cdn/shop/files/2024-Tea.jpg?v=1719467282",
-                        "1.95$"
+                        "$1.95"
                 )
         ), items);
 

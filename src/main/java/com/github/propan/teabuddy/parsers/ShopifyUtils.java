@@ -53,7 +53,7 @@ public class ShopifyUtils {
         }
 
         public String getDisplayPrice() {
-            return String.format("%d.%02d$", price / 100, price % 100);
+            return String.format("$%d.%02d", price / 100, price % 100);
         }
 
         @Override

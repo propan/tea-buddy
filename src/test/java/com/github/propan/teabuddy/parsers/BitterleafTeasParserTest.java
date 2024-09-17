@@ -59,7 +59,7 @@ class BitterleafTeasParserTest {
                         ItemType.WHITE_TEA,
                         "https://www.bitterleafteas.com/shop/tea/non-puer/white-out-2024-yunnan-white-tea-set",
                         "https://www.bitterleafteas.com/wp-content/uploads/2024/09/white-out-2024-yunnan-white-tea-set-all-500x333.jpg",
-                        "73.00$"
+                        "$73.00"
                 ),
                 new StoreListItem(
                         Store.BITTERLEAF_TEAS,
@@ -68,7 +68,7 @@ class BitterleafTeasParserTest {
                         ItemType.WHITE_TEA,
                         "https://www.bitterleafteas.com/shop/tea/non-puer/bright-stormy-2024-spring-kunlu-shan-white-tea",
                         "https://www.bitterleafteas.com/wp-content/uploads/2024/09/bright-stormy-2024-spring-kunlu-shan-white-tea-1-500x333.jpg",
-                        "129.00$"
+                        "$129.00"
                 ),
                 new StoreListItem(
                         Store.BITTERLEAF_TEAS,
@@ -77,7 +77,7 @@ class BitterleafTeasParserTest {
                         ItemType.WHITE_TEA,
                         "https://www.bitterleafteas.com/shop/tea/non-puer/impress-forcibly-through-unexpectedness-2024-spring-wuliang-shan-baimudan-white-tea",
                         "https://www.bitterleafteas.com/wp-content/uploads/2024/09/imprsess-forcibly-through-unexpectedness-2024-spring-wuliang-shan-white-tea-1-500x333.jpg",
-                        "153.00$"
+                        "$153.00"
                 ),
                 new StoreListItem(
                         Store.BITTERLEAF_TEAS,
@@ -86,7 +86,7 @@ class BitterleafTeasParserTest {
                         ItemType.WHITE_TEA,
                         "https://www.bitterleafteas.com/shop/tea/non-puer/skinny-dip-2024-spring-jinggu-white-tea",
                         "https://www.bitterleafteas.com/wp-content/uploads/2024/09/skinny-dip-2024-spring-jinggu-white-tea-1-500x333.jpg",
-                        "81.00$"
+                        "$81.00"
                 ),
                 new StoreListItem(
                         Store.BITTERLEAF_TEAS,
@@ -95,7 +95,7 @@ class BitterleafTeasParserTest {
                         ItemType.TEAWARE,
                         "https://www.bitterleafteas.com/shop/teaware/gaiwan/chameleon-soda-ash-wood-fired-gaiwan-ii",
                         "https://www.bitterleafteas.com/wp-content/uploads/2024/09/chameleon-soda-ash-wood-fired-gaiwan-2-8-500x333.jpg",
-                        "140.00$"
+                        "$140.00"
                 ),
                 new StoreListItem(
                         Store.BITTERLEAF_TEAS,
@@ -104,7 +104,7 @@ class BitterleafTeasParserTest {
                         ItemType.TEAWARE,
                         "https://www.bitterleafteas.com/shop/teaware/gaiwan/chameleon-soda-ash-wood-fired-gaiwan-iii",
                         "https://www.bitterleafteas.com/wp-content/uploads/2024/09/chameleon-soda-ash-wood-fired-gaiwan-3-12-500x333.jpg",
-                        "140.00$"
+                        "$140.00"
                 )
         ), items);
     }

@@ -59,7 +59,7 @@ class YunnanSourcingParserTest {
                         ItemType.DARK_TEA,
                         "https://yunnansourcing.com/collections/new-products/products/2013-gao-jia-shan-waffle-cut-qian-liang-hei-cha-tea",
                         "https://yunnansourcing.com/cdn/shop/files/1_0a016156-2a16-4643-a703-f2b44e0dbb67_512x512.jpg?v=1718731689",
-                        "72.00$"
+                        "$72.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -68,7 +68,7 @@ class YunnanSourcingParserTest {
                         ItemType.BLACK_TEA,
                         "https://yunnansourcing.com/collections/new-products/products/feng-qing-premium-black-gold-pearls-yunnan-black-tea",
                         "https://yunnansourcing.com/cdn/shop/products/thumb1_85d54d7c-b7b6-4ab4-88d1-68e9d4f6a1e9_512x511.jpg?v=1553621466",
-                        "109.00$"
+                        "$109.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -77,7 +77,7 @@ class YunnanSourcingParserTest {
                         ItemType.BLACK_TEA,
                         "https://yunnansourcing.com/collections/new-products/products/hand-made-flowering-black-tea-cones-from-feng-qing",
                         "https://yunnansourcing.com/cdn/shop/products/thumb1_140d5732-84c6-47ee-bfaa-ddf4dab0f9f8_512x510.jpg?v=1560801157",
-                        "109.00$"
+                        "$109.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -86,7 +86,7 @@ class YunnanSourcingParserTest {
                         ItemType.BLACK_TEA,
                         "https://yunnansourcing.com/collections/new-products/products/zheng-shan-xiao-zhong-of-wu-yi-fujian-black-tea",
                         "https://yunnansourcing.com/cdn/shop/products/1_11c34554-324f-44f5-91f1-25fa6a168166_512x512.jpg?v=1625850009",
-                        "75.00$"
+                        "$75.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -95,7 +95,7 @@ class YunnanSourcingParserTest {
                         ItemType.OOLONG_TEA,
                         "https://yunnansourcing.com/collections/new-products/products/phoenix-village-mi-xiang-shui-xian-oolong-tea",
                         "https://yunnansourcing.com/cdn/shop/products/DSC_1230_a35458ef-7336-4527-afd2-a03133706a0csq_512x512.jpg?v=1661818731",
-                        "95.00$"
+                        "$95.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -104,7 +104,7 @@ class YunnanSourcingParserTest {
                         ItemType.OOLONG_TEA,
                         "https://yunnansourcing.com/collections/new-products/products/high-mountain-lao-cong-huang-zhi-xiang-dan-cong-oolong-tea",
                         "https://yunnansourcing.com/cdn/shop/files/PXL-20240610_153853481_512x512.jpg?v=1718034659",
-                        "16.00$"
+                        "$16.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -113,7 +113,7 @@ class YunnanSourcingParserTest {
                         ItemType.TEAWARE,
                         "https://yunnansourcing.com/collections/new-products/products/titanium-flask-for-brewing-tea",
                         "https://yunnansourcing.com/cdn/shop/files/mmexport1717825960942_512x512.jpg?v=1717847622",
-                        "70.00$"
+                        "$70.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -122,7 +122,7 @@ class YunnanSourcingParserTest {
                         ItemType.TEAWARE,
                         "https://yunnansourcing.com/collections/new-products/products/ice-jade-porcelain-spring-bounty-gaiwan-and-cups",
                         "https://yunnansourcing.com/cdn/shop/files/DSC_2337set_512x512.jpg?v=1717610990",
-                        "46.00$"
+                        "$46.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -131,7 +131,7 @@ class YunnanSourcingParserTest {
                         ItemType.TEAWARE,
                         "https://yunnansourcing.com/collections/new-products/products/rainbow-morning-titanium-tea-cups",
                         "https://yunnansourcing.com/cdn/shop/files/1_e8c9434e-648d-4146-b9c1-23a892f0e1ca_512x512.jpg?v=1717609064",
-                        "45.00$"
+                        "$45.00"
                 ),
                 new StoreListItem(
                         Store.YUNNAN_SOURCING,
@@ -140,7 +140,7 @@ class YunnanSourcingParserTest {
                         ItemType.TEAWARE,
                         "https://yunnansourcing.com/collections/new-products/products/titanium-strainer-with-hardwood-handle",
                         "https://yunnansourcing.com/cdn/shop/files/1_2f31ddff-ae4a-4a90-9a80-8828170c2a85_512x512.jpg?v=1717782217",
-                        "15.90$"
+                        "$15.90"
                 )
         ), items);
     }
