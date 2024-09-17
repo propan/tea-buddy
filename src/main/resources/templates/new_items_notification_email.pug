@@ -30,7 +30,7 @@ html
                                             - let groupSize = group.items().size()
                                             tr
                                                 th(align="left" valign="center" colspan="2" style=`font-family: sans-serif; font-size: 13px; padding:5px 9px; background-color: #f9f9f9; ${headerBorder}`)
-                                                    | #{group.store()}
+                                                    | #{group.store().getName()}
                                             each item, index in group.items()
                                                  - let border = index == (groupSize - 1) ? '' : 'border-bottom:1px dotted #cccccc;'
                                                  tr

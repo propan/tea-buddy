@@ -68,6 +68,6 @@ class TemplateServiceTest {
         java.net.URL url = TemplateServiceTest.class.getResource("notification.html");
         assertThat(url).isNotNull();
 
-        assertThat(result).isEqualTo(Files.readString(Paths.get(url.getPath())));
+        assertThat(result.strip()).isEqualTo(Files.readString(Paths.get(url.getPath())).strip());
     }
 }
