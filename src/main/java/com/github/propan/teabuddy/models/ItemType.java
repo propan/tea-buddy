@@ -37,13 +37,13 @@ public enum ItemType {
                 .replace("puerh", "puer")
                 .replace("pu-erh", "puer");
 
-        if (val.contains("raw puer tea")) {
+        if (val.contains("raw puer tea") || val.contains("шен пу")) {
             return RAW_PUER_TEA;
-        } else if (val.contains("ripe puer tea")) {
+        } else if (val.contains("ripe puer tea") || val.contains("шу пу")) {
             return RIPE_PUER_TEA;
         } else if (val.contains("white tea")) {
             return WHITE_TEA;
-        } else if (val.contains("oolong tea")) {
+        } else if (val.contains("oolong tea") || val.contains("да хун пао")) {
             return OOLONG_TEA;
         } else if (val.contains("green tea")) {
             return GREEN_TEA;
