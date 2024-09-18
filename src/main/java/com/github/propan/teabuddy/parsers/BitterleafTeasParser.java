@@ -98,7 +98,6 @@ public class BitterleafTeasParser implements StoreParser {
                 price = productPrice.text();
             }
 
-
             StoreListItem product = new StoreListItem(
                     Store.BITTERLEAF_TEAS,
                     "bitterleafteas",
