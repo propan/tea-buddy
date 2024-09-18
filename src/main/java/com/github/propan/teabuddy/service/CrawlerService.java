@@ -63,12 +63,14 @@ public class CrawlerService {
             try {
                 int newItemsTotal = 0;
                 for (String pageUrl : parser.getStorePages().limit(MAX_CRAWL_DEPTH).toList()) {
+                    log.info("Crawling store page: {}", pageUrl);
+                    
                     List<StoreListItem> products = this.fetchProducts(parser, pageUrl);
 
                     int newItemsCount = this.itemsRepository.storeItems(products);
                     newItemsTotal += newItemsCount;
 
-                    log.debug("Found {} new items on page: {}", newItemsCount, pageUrl);
+                    log.info("Found {} new items on page: {}", newItemsCount, pageUrl);
 
                     if (newItemsCount < products.size()) {
                         // there are known items on the page, we can stop crawling

@@ -3,10 +3,13 @@ package com.github.propan.teabuddy.parsers;
 import com.github.propan.teabuddy.models.ItemType;
 import com.github.propan.teabuddy.models.Store;
 import com.github.propan.teabuddy.models.StoreListItem;
+import com.github.propan.teabuddy.service.CrawlerService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,6 +21,8 @@ import java.util.stream.Stream;
 
 @Component
 public class BaduchaiParser implements StoreParser {
+
+    private static final Logger log = LoggerFactory.getLogger(BaduchaiParser.class);
 
     private final static String BASE_URL = "https://baduchai.ru";
 
@@ -61,7 +66,7 @@ public class BaduchaiParser implements StoreParser {
                     itemType = t;
                     break;
                 } else {
-                    System.out.println(categorydMatcher.group(1));
+                    log.warn("unknown category: {}", categorydMatcher.group(1));
                 }
             }
 
@@ -100,7 +105,7 @@ public class BaduchaiParser implements StoreParser {
             case "zelenyj" -> ItemType.GREEN_TEA;
             case "shu-puer" -> ItemType.RIPE_PUER_TEA;
             case "shen-puer" -> ItemType.RAW_PUER_TEA;
-            case "ulun", "kollekczionnye-utyosnye-uluny", "chetyre-znamenityh-chajnyh-kusta", "tajvanskie-uluny" -> ItemType.OOLONG_TEA;
+            case "ulun", "kollekczionnye-utyosnye-uluny", "chetyre-znamenityh-chajnyh-kusta", "tajvanskie-uluny", "te-guan-in", "chzhun-czzu-ho-glubokaya-prozharka" -> ItemType.OOLONG_TEA;
             default -> ItemType.OTHER;
         };
     }

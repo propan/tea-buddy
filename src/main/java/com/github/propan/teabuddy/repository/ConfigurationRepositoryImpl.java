@@ -39,6 +39,7 @@ public class ConfigurationRepositoryImpl implements ConfigurationRepository {
             }
             InternetAddress[] addresses = InternetAddress.parse(notificationRecipientsEnv);
             for (InternetAddress address : addresses) {
+                log.info("Register notification recipient: {}", address.getAddress());
                 recipients.add(Contact.of(address.getPersonal(), address.getAddress()));
             }
         } catch (AddressException ex) {
