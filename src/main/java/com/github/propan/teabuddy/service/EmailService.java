@@ -32,9 +32,9 @@ public class EmailService {
     public void sendNotificationEmail(Contact from, List<Contact> to, List<ItemGroup> groups) {
         Integer totalItems = groups.stream().map(g -> g.items().size()).reduce(Integer::sum).orElse(0);
 
-        SendEmailsRequest.SendEmailsRequestBuilder requestBuilder = SendEmailsRequest.builder();
-
         for (Contact recipient : to) {
+            SendEmailsRequest.SendEmailsRequestBuilder requestBuilder = SendEmailsRequest.builder();
+
             try {
                 String emailBody = this.templateService.renderNotificationEmail(recipient, groups);
 
