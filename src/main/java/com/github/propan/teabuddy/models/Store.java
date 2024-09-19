@@ -6,7 +6,8 @@ public enum Store {
     YUNNAN_SOURCING("Yunnan Sourcing"),
     BITTERLEAF_TEAS("Bitterleaf Teas"),
     BADUCHAI("Бадучай"),
-    ART_OF_TEA("Art of Tea");
+    ART_OF_TEA("Art of Tea"),
+    ESSENCE_OF_TEA("The Essence of Tea");
 
     private final String name;
 
