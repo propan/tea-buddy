@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 @Component
 public class ArtOfTeaParser implements StoreParser {
 
-    private final static String BASE_URL = "https://artoftea.ru/latest-products/";
+    private final static String BASE_URL = "https://artoftea.ru";
 
     private static final Pattern categoryPattern = Pattern.compile("https:\\/\\/artoftea.ru\\/([\\w-]+)(\\/([\\w-]+))?\\/[\\w-]+", Pattern.CASE_INSENSITIVE);
 
@@ -44,7 +44,7 @@ public class ArtOfTeaParser implements StoreParser {
     public List<StoreListItem> parse(String htmlBody) throws DataProcessingException {
         Document body = Jsoup.parse(htmlBody);
 
-        Elements items = body.select(".product-thumb");
+        Elements items = body.select(".products-block .product-layout");
         if (items.isEmpty()) {
             throw new DataProcessingException(String.format("No product information found on the page %s", getStoreName()));
         }
@@ -54,19 +54,40 @@ public class ArtOfTeaParser implements StoreParser {
         for (Element item : items) {
             ItemType itemType = ItemType.OTHER;
 
-            Matcher matcher = categoryPattern.matcher(item.select(".name a").attr("href"));
+            Matcher matcher = categoryPattern.matcher(item.select(".product-thumb__name").attr("href"));
             while (matcher.find()) {
                 itemType = categoryToItemType(matcher.group(3) == null ? matcher.group(1) : matcher.group(3));
+            }
+
+            float itemPrice = -1;
+            List<String> extractedPrices = item.select(".options-category option").eachAttr("data-price");
+            for (String price : extractedPrices) {
+                try {
+                    float val = Float.parseFloat(price);
+                    if (val > itemPrice) {
+                        itemPrice = val;
+                    }
+                } catch (Exception ignore) {
+                    // ignore this bad value
+                }
+            }
+
+            if (itemPrice < 0) {
+                try {
+                    itemPrice = Float.parseFloat(item.select(".product-thumb__price").attr("data-price"));
+                } catch (Exception ignore) {
+                    // ignore this bad value
+                }
             }
 
             StoreListItem product = new StoreListItem(
                     Store.ART_OF_TEA,
                     "art_of_tea",
-                    item.select("h4.name").text(),
+                    item.select(".product-thumb__name").text(),
                     itemType,
-                    item.select(".name a").attr("href"),
-                    item.select(".image img").attr("src"),
-                    normalizePrice(item.select(".price").text())
+                    item.select(".product-thumb__name").attr("href"),
+                    item.select(".product-thumb__image img").attr("src"),
+                    normalizePrice(itemPrice)
             );
 
             if (!product.isValid()) {
@@ -83,22 +104,12 @@ public class ArtOfTeaParser implements StoreParser {
         return products;
     }
 
-    private String normalizePrice(String price) {
-        if (price == null) {
+    private String normalizePrice(float price) {
+        if (price < 0) {
             return "";
         }
-        price = price.replace(" ", "");
 
-        if (!price.endsWith("р.")) {
-            return price;
-        }
-
-        price = "₽" + price.substring(0, price.length() - 2);
-        if (price.contains(".")) {
-            return price;
-        }
-
-        return price + ".00";
+        return "₽" + String.format("%.2f", price);
     }
 
     private ItemType categoryToItemType(String category) {
@@ -110,8 +121,8 @@ public class ArtOfTeaParser implements StoreParser {
             case "greentea" -> ItemType.GREEN_TEA;
             case "shu-puer" -> ItemType.RIPE_PUER_TEA;
             case "sheng-puer" -> ItemType.RAW_PUER_TEA;
-            case "taiwan-oolong" -> ItemType.OOLONG_TEA;
-            case "chahai", "chainiki-isinskaya-glina", "cups", "chaban" -> ItemType.TEAWARE;
+            case "taiwan-oolong", "taiwan-tea" -> ItemType.OOLONG_TEA;
+            case "chahai", "chainiki-isinskaya-glina", "cups", "chaban", "tea-toys", "farfor-iz-tszindechzhen", "posuda", "accesories" -> ItemType.TEAWARE;
             default -> ItemType.OTHER;
         };
     }

@@ -55,74 +55,74 @@ class ArtOfTeaParserTest {
                 new StoreListItem(
                         Store.ART_OF_TEA,
                         "art_of_tea",
-                        "Классика шу: Мэнхай + Линьцан, 2 блина по 100 гр.",
+                        "Шу КАА",
                         ItemType.RIPE_PUER_TEA,
-                        "https://artoftea.ru/puer/shu-puer/klassika-shu-menhay-i-lintsan-2-blina-po-100-g",
-                        "https://artoftea.ru/image/cache/catalog/may24/dsc09464-239x239.jpg",
-                        "₽1550.00"
+                        "https://artoftea.ru/puer/shu-puer/kaa-2013-g",
+                        "https://artoftea.ru/image/cache/catalog/dec24/dsc03536-220x230.jpg",
+                        "₽1980.00"
                 ),
                 new StoreListItem(
                         Store.ART_OF_TEA,
                         "art_of_tea",
-                        "Юэ Гуан Бай Белый Лунный Свет, 2024 г.",
+                        "Много всего за всего ничего, 6х20 гр.",
+                        ItemType.OTHER,
+                        "https://artoftea.ru/chaynyye-nabory/mnogo-vsego-za-vsego-nichego",
+                        "https://artoftea.ru/image/cache/catalog/daria%20март/DSC04806-220x230.jpg",
+                        "₽900.00"
+                ),
+                new StoreListItem(
+                        Store.ART_OF_TEA,
+                        "art_of_tea",
+                        "Юэ Гуан Бай Белый Лунный Свет",
                         ItemType.WHITE_TEA,
                         "https://artoftea.ru/whitetea/yue-guan-bay-bely-lunny-svet",
-                        "https://artoftea.ru/image/cache/catalog/may22/img_7934-239x239.jpg",
-                        "₽500.00"
+                        "https://artoftea.ru/image/cache/catalog/may22/img_7934-220x230.jpg",
+                        "₽250.00"
                 ),
                 new StoreListItem(
                         Store.ART_OF_TEA,
                         "art_of_tea",
-                        "Цзюнь Шань Мао Цзянь, весна 2024 г.",
-                        ItemType.GREEN_TEA,
-                        "https://artoftea.ru/greentea/tszyun-shan-mao-tszyan-vesna-2024-g",
-                        "https://artoftea.ru/image/cache/catalog/may24/dsc09400-239x239.jpg",
-                        "₽1080.00"
-                ),
-                new StoreListItem(
-                        Store.ART_OF_TEA,
-                        "art_of_tea",
-                        "Юн Чжень \u200EКрасный Бык, 2023 г.",
-                        ItemType.RIPE_PUER_TEA,
-                        "https://artoftea.ru/puer/shu-puer/yun-chzhen-krasny-byk-2022-g-blin-357-gr",
-                        "https://artoftea.ru/image/cache/catalog/may22/img_7800-239x239.jpg",
-                        "₽2950.00"
-                ),
-                new StoreListItem(
-                        Store.ART_OF_TEA,
-                        "art_of_tea",
-                        "Сы Цзы Чунь",
+                        "Гуй Фэй Наложница Императора",
                         ItemType.OOLONG_TEA,
-                        "https://artoftea.ru/oolong/taiwan-oolong/sy-tszy-chun",
-                        "https://artoftea.ru/image/cache/catalog/feb20/img_1474-239x239.jpg",
-                        "₽780.00"
+                        "https://artoftea.ru/oolong/taiwan-oolong/guy-fey-ulun",
+                        "https://artoftea.ru/image/cache/catalog/nov23/dsc03857-220x230.jpg",
+                        "₽6050.00"
                 ),
                 new StoreListItem(
                         Store.ART_OF_TEA,
                         "art_of_tea",
-                        "Лю Бао Хэй Ча, 2006 г.",
-                        ItemType.DARK_TEA,
-                        "https://artoftea.ru/xej-cha-chernyj-chaj/lyu-bao-hey-cha-2006-g",
-                        "https://artoftea.ru/image/cache/catalog/may24/dsc09341-239x239.jpg",
-                        "₽1350.00"
+                        "Жи Юэ Тань Рубиновый №18",
+                        ItemType.OOLONG_TEA,
+                        "https://artoftea.ru/taiwan-tea/sun-moon-lake-rubinivyi-18",
+                        "https://artoftea.ru/image/cache/catalog/nov23/dsc04838-220x230.jpg",
+                        "₽150.00"
                 ),
                 new StoreListItem(
                         Store.ART_OF_TEA,
                         "art_of_tea",
-                        "Гунтин в мандарине Сяо Цин Ган Синь Хуэй, 2019 г.",
-                        ItemType.RIPE_PUER_TEA,
-                        "https://artoftea.ru/puer/shu-puer/guntin-v-mandarine-syao-tsin-gan-sin-huey-2019-g",
-                        "https://artoftea.ru/image/cache/catalog/may24/dsc09246-239x239.jpg",
-                        "₽680.00"
+                        "Набор Ночь Вдвоём s121, стекло, 3 предмета",
+                        ItemType.TEAWARE,
+                        "https://artoftea.ru/posuda/nabory?product_id=6246",
+                        "https://artoftea.ru/image/cache/catalog/mar25/DSC04627%20копия-220x230.jpg",
+                        "₽2980.00"
                 ),
                 new StoreListItem(
                         Store.ART_OF_TEA,
                         "art_of_tea",
-                        "Ми Сян Цзинь Я, весна 2024 г.",
-                        ItemType.BLACK_TEA,
-                        "https://artoftea.ru/redtea/mi-syan-tszin-ya-vesna-2023-g",
-                        "https://artoftea.ru/image/cache/catalog/apr23/img_9860-239x239.jpg",
-                        "₽940.00"
+                        "Фигурка Кот Мусс 628, глина, 7 см",
+                        ItemType.TEAWARE,
+                        "https://artoftea.ru/accesories/tea-toys?product_id=6247",
+                        "https://artoftea.ru/image/cache/catalog/mar25/DSC04611-220x230.jpg",
+                        "₽1700.00"
+                ),
+                new StoreListItem(
+                        Store.ART_OF_TEA,
+                        "art_of_tea",
+                        "Фигурка Кот Тофу 627, глина, 4 см",
+                        ItemType.TEAWARE,
+                        "https://artoftea.ru/accesories/tea-toys?product_id=6249",
+                        "https://artoftea.ru/image/cache/catalog/mar25/DSC04619-220x230.jpg",
+                        "₽1800.00"
                 )
         ), items);
     }
