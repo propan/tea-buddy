@@ -14,6 +14,10 @@ public enum ItemType {
     OTHER;
 
     public static ItemType fromString(String s) {
+        if (s == null || s.isEmpty()) {
+            return OTHER;
+        }
+
         String val = s.toLowerCase()
                 .replace("puerh", "puer")
                 .replace("pu-erh", "puer");
