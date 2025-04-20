@@ -70,7 +70,7 @@ public class CrawlerService {
                     int newItemsCount = this.itemsRepository.storeItems(products);
                     newItemsTotal += newItemsCount;
 
-                    log.info("Found {} new items on page: {}", newItemsCount, pageUrl);
+                    log.info("Found {} items on page {}, of which {} are new ", products.size(), pageUrl, newItemsCount);
 
                     if (newItemsCount < products.size()) {
                         // there are known items on the page, we can stop crawling
