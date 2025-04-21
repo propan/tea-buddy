@@ -46,7 +46,7 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
     - name: Build
-      run: ./gradlew build
+      run: ./gradlew build --stacktrace
 
     - name: Build and Push Docker image
       id: push
