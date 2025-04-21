@@ -46,7 +46,14 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
     - name: Build
-      run: ./gradlew build --stacktrace
+      run: ./gradlew build
+
+    - name: Upload Test Reports
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: build/reports/tests/test/
 
     - name: Build and Push Docker image
       id: push
