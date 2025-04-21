@@ -38,9 +38,13 @@ public class TeaBuddyApplication {
 
     @Bean
     public OpenAiChatModel chatModel() {
+        String key = System.getenv("OPENAI_API_KEY");
+        if (key == null) {
+            key = "";
+        }
         return OpenAiChatModel.builder()
                 .openAiApi(OpenAiApi.builder()
-                        .apiKey(System.getenv("OPENAI_API_KEY"))
+                        .apiKey(key)
                         .build()
                 )
                 .build();
