@@ -15,17 +15,23 @@ import java.util.Map;
 public class TemplateService {
 
     private final PugConfiguration configuration;
+    private final EmailComposer composer;
 
     @Autowired
-    public TemplateService(PugConfiguration configuration) {
+    public TemplateService(PugConfiguration configuration, EmailComposer composer) {
         this.configuration = configuration;
+        this.composer = composer;
     }
 
     public String renderNotificationEmail(Contact recipient, List<ItemGroup> groups) throws IOException {
         PugTemplate template = configuration.getTemplate("new_items_notification_email.pug");
+
+        String introText = composer.compose(groups);
+
         return configuration.renderTemplate(template, Map.of(
                 "recipient", recipient,
-                "groups", groups
+                "groups", groups,
+                "introText", introText
         ));
     }
 

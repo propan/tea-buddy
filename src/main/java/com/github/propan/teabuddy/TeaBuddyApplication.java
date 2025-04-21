@@ -4,6 +4,8 @@ import com.mailjet.client.ClientOptions;
 import com.mailjet.client.MailjetClient;
 import de.neuland.pug4j.PugConfiguration;
 import de.neuland.pug4j.spring.template.SpringTemplateLoader;
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +34,16 @@ public class TeaBuddyApplication {
                 .apiSecretKey(System.getenv("MAILJET_SECRET"))
                 .build();
         return new MailjetClient(options);
+    }
+
+    @Bean
+    public OpenAiChatModel chatModel() {
+        return OpenAiChatModel.builder()
+                .openAiApi(OpenAiApi.builder()
+                        .apiKey(System.getenv("OPENAI_API_KEY"))
+                        .build()
+                )
+                .build();
     }
 
     @Bean

@@ -1,10 +1,13 @@
 package com.github.propan.teabuddy.service;
 
 import com.github.propan.teabuddy.models.*;
+import com.github.propan.teabuddy.parsers.StoreParser;
+import com.github.propan.teabuddy.utils.BaseTestCase;
 import de.neuland.pug4j.PugConfiguration;
 import de.neuland.pug4j.spring.template.SpringTemplateLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import java.io.IOException;
@@ -13,8 +16,12 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
-class TemplateServiceTest {
+class TemplateServiceTest extends BaseTestCase {
+
+    @Mock
+    private EmailComposer composer;
 
     private TemplateService templateService;
 
@@ -31,38 +38,42 @@ class TemplateServiceTest {
         configuration.setCaching(true);
         configuration.setTemplateLoader(templateLoader);
 
-        templateService = new TemplateService(configuration);
+        templateService = new TemplateService(configuration, composer);
     }
 
     @Test
     void renderNotificationEmail() throws IOException {
-        String result = templateService.renderNotificationEmail(
-                Contact.of("Dale Cooper", "bob@twinpeaks.com"),
-                List.of(
-                        new ItemGroup(
-                                Store.WHITE2TEA,
-                                List.of(
-                                        new StoreListItem(
-                                                Store.WHITE2TEA,
-                                                "white2tea",
-                                                "2024 Philtre - 200g",
-                                                ItemType.RAW_PUER_TEA,
-                                                "https://white2tea.com/collections/latest-additions/products/2024-philtre",
-                                                "https://white2tea.com/cdn/shop/files/2024Philtre-Raw-Puer-tea_1600x.jpg?v=1716700025",
-                                                "46.95$"
-                                        ),
-                                        new StoreListItem(
-                                                Store.WHITE2TEA,
-                                                "white2tea",
-                                                "2024 Philtre Minis - ~7g",
-                                                ItemType.RAW_PUER_TEA,
-                                                "https://white2tea.com/collections/latest-additions/products/2024-philtre-minis",
-                                                "https://white2tea.com/cdn/shop/files/2024PhiltreMinis_1600x.jpg?v=1716699952",
-                                                "1.95$"
-                                        )
+        List<ItemGroup> groups = List.of(
+                new ItemGroup(
+                        Store.WHITE2TEA,
+                        List.of(
+                                new StoreListItem(
+                                        Store.WHITE2TEA,
+                                        "white2tea",
+                                        "2024 Philtre - 200g",
+                                        ItemType.RAW_PUER_TEA,
+                                        "https://white2tea.com/collections/latest-additions/products/2024-philtre",
+                                        "https://white2tea.com/cdn/shop/files/2024Philtre-Raw-Puer-tea_1600x.jpg?v=1716700025",
+                                        "46.95$"
+                                ),
+                                new StoreListItem(
+                                        Store.WHITE2TEA,
+                                        "white2tea",
+                                        "2024 Philtre Minis - ~7g",
+                                        ItemType.RAW_PUER_TEA,
+                                        "https://white2tea.com/collections/latest-additions/products/2024-philtre-minis",
+                                        "https://white2tea.com/cdn/shop/files/2024PhiltreMinis_1600x.jpg?v=1716699952",
+                                        "1.95$"
                                 )
                         )
                 )
+        );
+
+        when(composer.compose(groups)).thenReturn(EmailComposer.DEFAULT_OUTPUT);
+
+        String result = templateService.renderNotificationEmail(
+                Contact.of("Dale Cooper", "bob@twinpeaks.com"),
+                groups
         );
 
         java.net.URL url = TemplateServiceTest.class.getResource("notification.html");
