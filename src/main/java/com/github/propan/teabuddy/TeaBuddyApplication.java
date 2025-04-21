@@ -4,6 +4,7 @@ import com.mailjet.client.ClientOptions;
 import com.mailjet.client.MailjetClient;
 import de.neuland.pug4j.PugConfiguration;
 import de.neuland.pug4j.spring.template.SpringTemplateLoader;
+import org.springframework.ai.model.openai.autoconfigure.*;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,16 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import java.net.http.HttpClient;
 import java.time.Duration;
 
-@SpringBootApplication
+@SpringBootApplication(
+        exclude = {
+                OpenAiAudioSpeechAutoConfiguration.class,
+                OpenAiAudioTranscriptionAutoConfiguration.class,
+                OpenAiChatAutoConfiguration.class,
+                OpenAiEmbeddingAutoConfiguration.class,
+                OpenAiImageAutoConfiguration.class,
+                OpenAiModerationAutoConfiguration.class
+        }
+)
 @EnableScheduling
 public class TeaBuddyApplication {
 
