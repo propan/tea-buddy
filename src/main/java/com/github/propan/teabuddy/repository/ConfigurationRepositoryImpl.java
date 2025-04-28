@@ -18,6 +18,7 @@ public class ConfigurationRepositoryImpl implements ConfigurationRepository {
 
     private Contact sender;
     private final List<Contact> recipients = new ArrayList<>();
+    private Contact errorNotificationRecipient;
 
     @PostConstruct
     public void init() {
@@ -45,7 +46,18 @@ public class ConfigurationRepositoryImpl implements ConfigurationRepository {
             log.error("Failed to parse NOTIFICATION_RECIPIENTS", ex);
         }
 
-        if (sender == null || recipients.isEmpty()) {
+        try {
+            String recipientEnv = System.getenv("ERROR_NOTIFICATION_RECIPIENT");
+            if (recipientEnv == null) {
+                throw new IllegalStateException("ERROR_NOTIFICATION_RECIPIENT is not set");
+            }
+            InternetAddress address = new InternetAddress(recipientEnv);
+            errorNotificationRecipient = Contact.of(address.getPersonal(), address.getAddress());
+        } catch (AddressException ex) {
+            log.error("Failed to parse ERROR_NOTIFICATION_RECIPIENT", ex);
+        }
+
+        if (sender == null || recipients.isEmpty() || errorNotificationRecipient == null) {
             throw new IllegalStateException("Failed to parse configuration");
         }
     }
@@ -58,6 +70,11 @@ public class ConfigurationRepositoryImpl implements ConfigurationRepository {
     @Override
     public List<Contact> getNotificationRecipients() {
         return List.copyOf(this.recipients);
+    }
+
+    @Override
+    public Contact getErrorNotificationRecipient() {
+        return Contact.of(errorNotificationRecipient.name(), errorNotificationRecipient.email());
     }
 
 }

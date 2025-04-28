@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TemplateService {
@@ -35,4 +37,28 @@ public class TemplateService {
         ));
     }
 
+    public String renderErrorAlertEmail(Exception exception) throws IOException {
+        PugTemplate template = configuration.getTemplate("error_alert_email.pug");
+
+        Throwable cause = exception.getCause() == null ? exception : exception.getCause();
+
+        String errorMessage = cause.getMessage() == null || cause.getMessage().isEmpty() ?
+                cause.getClass().getCanonicalName() :
+                cause.getMessage();
+
+        boolean hasStacktrace = exception.getStackTrace() != null && exception.getStackTrace().length > 0;
+
+        String errorStacktrace = null;
+
+        if (hasStacktrace) {
+            errorStacktrace = Arrays.stream(exception.getStackTrace())
+                    .map(stackTrace -> "\t" + stackTrace.toString()).collect(Collectors.joining("\n"));
+        }
+
+        return configuration.renderTemplate(template, Map.of(
+                "errorMessage", errorMessage,
+                "hasStacktrace", hasStacktrace,
+                "stackTrace", errorStacktrace == null ? "" : errorStacktrace
+        ));
+    }
 }

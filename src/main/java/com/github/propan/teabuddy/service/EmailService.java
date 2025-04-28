@@ -59,4 +59,26 @@ public class EmailService {
             }
         }
     }
+
+    public void sendErrorNotificationEmail(Contact from, Contact to, Exception e) {
+        try {
+            String emailBody = this.templateService.renderErrorAlertEmail(e);
+
+            TransactionalEmail message = TransactionalEmail.builder()
+                    .to(new SendContact(to.email(), to.name()))
+                    .from(new SendContact(from.email(), from.name()))
+                    .htmlPart(emailBody)
+                    .subject("Alert: Houston, we've had a problem")
+                    .trackOpens(TrackOpens.ENABLED)
+                    .build();
+
+            SendEmailsRequest.builder()
+                    .message(message)
+                    .build()
+                    .sendWith(this.client);
+
+        } catch (Exception ex) {
+            log.error("Failed to send error notification email", ex);
+        }
+    }
 }

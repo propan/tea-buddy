@@ -10,4 +10,5 @@ public interface ConfigurationRepository {
 
     public List<Contact> getNotificationRecipients();
 
+    public Contact getErrorNotificationRecipient();
 }

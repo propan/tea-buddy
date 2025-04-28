@@ -32,6 +32,8 @@ class CrawlerServiceTest extends BaseTestCase {
     private ItemsRepository itemRepository;
     @Mock
     private HttpClient httpClient;
+    @Mock
+    private NotificationService notificationService;
 
     @InjectMocks
     private CrawlerService crawlerService;
@@ -41,12 +43,12 @@ class CrawlerServiceTest extends BaseTestCase {
 
     @BeforeEach
     public void init() {
-        crawlerService = new CrawlerService(List.of(parser), crawlerRepository, itemRepository, httpClient);
+        crawlerService = new CrawlerService(List.of(parser), crawlerRepository, itemRepository, httpClient, notificationService);
     }
 
     @AfterEach
     public void tearDown() {
-        Mockito.verifyNoMoreInteractions(crawlerRepository, itemRepository, httpClient);
+        Mockito.verifyNoMoreInteractions(crawlerRepository, itemRepository, httpClient, notificationService);
     }
 
     @Test
@@ -107,19 +109,25 @@ class CrawlerServiceTest extends BaseTestCase {
         public void fetchProductsFails() throws IOException, InterruptedException {
             UUID crawlerId = UUID.randomUUID();
 
+            DataProcessingException exception = new DataProcessingException("test");
+
             when(crawlerRepository.findExecutableCrawler()).thenReturn(Optional.of(new Crawler(crawlerId, parser.getClass().getName())));
 
             when(httpClient.send(any(), eq(HttpResponse.BodyHandlers.ofString()))).thenReturn(httpResponse);
             when(httpResponse.body()).thenReturn("test-body");
-            when(parser.getStorePages()).thenReturn(Stream.of("http://test.com"));
+            when(parser.getStorePages()).thenReturn(Stream.of("https://test.com"));
             when(parser.getStoreName()).thenReturn("test-store");
-            when(parser.parse("test-body")).thenThrow(new DataProcessingException("test"));
+            when(parser.parse("test-body")).thenThrow(exception);
+            when(parser.getStoreName()).thenReturn("test-store");
+
+            doNothing().when(notificationService).sendErrorNotification(exception);
 
             crawlerService.crawlStore();
 
             verify(crawlerRepository, times(1)).findExecutableCrawler();
             verify(httpClient, times(1)).send(any(), eq(HttpResponse.BodyHandlers.ofString()));
-            verify(crawlerRepository, times(1)).writeCrawlingResult(crawlerId, Crawler.ExecutionResult.from(new DataProcessingException("test")));
+            verify(crawlerRepository, times(1)).writeCrawlingResult(crawlerId, Crawler.ExecutionResult.from(exception));
+            verify(notificationService, times(1)).sendErrorNotification(exception);
         }
 
         @Test

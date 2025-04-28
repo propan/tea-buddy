@@ -56,4 +56,12 @@ public class NotificationService {
                 groups
         );
     }
+
+    public void sendErrorNotification(Exception exception) {
+        emailService.sendErrorNotificationEmail(
+                this.configuration.getNotificationSender(),
+                this.configuration.getErrorNotificationRecipient(),
+                exception
+        );
+    }
 }

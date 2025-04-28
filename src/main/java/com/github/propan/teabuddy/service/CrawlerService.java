@@ -20,8 +20,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -32,16 +35,21 @@ public class CrawlerService {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     public static final int MAX_CRAWL_DEPTH = 5;
 
+    private final Map<String, Instant> lastErrorTimestamp = new ConcurrentHashMap<>();
+    private static final Duration ERROR_NOTIFICATION_COOLDOWN = Duration.ofHours(4);
+
     private final List<StoreParser> parsers;
     private final CrawlerRepository crawlerRepository;
     private final ItemsRepository itemsRepository;
+    private final NotificationService notificationService;
     private final HttpClient httpClient;
 
     @Autowired
-    public CrawlerService(List<StoreParser> parsers, CrawlerRepository crawlerRepository, ItemsRepository itemsRepository, HttpClient httpClient) {
+    public CrawlerService(List<StoreParser> parsers, CrawlerRepository crawlerRepository, ItemsRepository itemsRepository, HttpClient httpClient, NotificationService notificationService) {
         this.parsers = parsers;
         this.crawlerRepository = crawlerRepository;
         this.itemsRepository = itemsRepository;
+        this.notificationService = notificationService;
         this.httpClient = httpClient;
     }
 
@@ -86,6 +94,10 @@ public class CrawlerService {
             } catch (Exception e) {
                 log.error(String.format("Failed to fetch products from %s", parser.getStoreName()), e);
                 this.crawlerRepository.writeCrawlingResult(taskMeta.crawlerId(), Crawler.ExecutionResult.from(e));
+
+                if (shouldSendErrorNotification(parser.getStoreName())) {
+                    this.notificationService.sendErrorNotification(e);
+                }
             }
         });
     }
@@ -121,5 +133,17 @@ public class CrawlerService {
         }
 
         return Optional.of(new TaskMeta(crawler.id(), parser.get()));
+    }
+
+    private boolean shouldSendErrorNotification(String storeName) {
+        Instant now = Instant.now();
+        Instant lastNotification = lastErrorTimestamp.getOrDefault(storeName, Instant.MIN);
+
+        if (now.minus(ERROR_NOTIFICATION_COOLDOWN).isAfter(lastNotification)) {
+            lastErrorTimestamp.put(storeName, now);
+            return true;
+        }
+
+        return false;
     }
 }

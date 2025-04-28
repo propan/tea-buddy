@@ -1,7 +1,6 @@
 package com.github.propan.teabuddy.service;
 
 import com.github.propan.teabuddy.models.*;
-import com.github.propan.teabuddy.parsers.StoreParser;
 import com.github.propan.teabuddy.utils.BaseTestCase;
 import de.neuland.pug4j.PugConfiguration;
 import de.neuland.pug4j.spring.template.SpringTemplateLoader;
@@ -77,6 +76,16 @@ class TemplateServiceTest extends BaseTestCase {
         );
 
         java.net.URL url = TemplateServiceTest.class.getResource("notification.html");
+        assertThat(url).isNotNull();
+
+        assertThat(result.strip()).isEqualTo(Files.readString(Paths.get(url.getPath())).strip());
+    }
+
+    @Test
+    void renderErrorAlertEmail() throws IOException {
+        String result = templateService.renderErrorAlertEmail(new NullPointerException("This is a test exception!"));
+
+        java.net.URL url = TemplateServiceTest.class.getResource("alert.html");
         assertThat(url).isNotNull();
 
         assertThat(result.strip()).isEqualTo(Files.readString(Paths.get(url.getPath())).strip());
