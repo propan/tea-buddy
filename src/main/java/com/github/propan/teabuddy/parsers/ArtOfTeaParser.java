@@ -30,14 +30,7 @@ public class ArtOfTeaParser implements StoreParser {
 
     @Override
     public Stream<String> getStorePages() {
-        return Stream.generate(new Supplier<>() {
-            private int page = 1;
-
-            @Override
-            public String get() {
-                return String.format("%s/latest-products/?page=%d", BASE_URL, page++);
-            }
-        });
+        return Stream.of(String.format("%s/latest-products", BASE_URL));
     }
 
     @Override
@@ -122,7 +115,7 @@ public class ArtOfTeaParser implements StoreParser {
             case "shu-puer" -> ItemType.RIPE_PUER_TEA;
             case "sheng-puer" -> ItemType.RAW_PUER_TEA;
             case "taiwan-oolong", "taiwan-tea" -> ItemType.OOLONG_TEA;
-            case "chahai", "chainiki-isinskaya-glina", "cups", "chaban", "tea-toys", "farfor-iz-tszindechzhen", "posuda", "accesories" -> ItemType.TEAWARE;
+            case "chahai", "chainiki-isinskaya-glina", "cups", "chaban", "tea-toys", "farfor-iz-tszindechzhen", "posuda", "accesories", "gaiwans" -> ItemType.TEAWARE;
             default -> ItemType.OTHER;
         };
     }
