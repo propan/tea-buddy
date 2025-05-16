@@ -24,7 +24,7 @@ public class CrawlerRepositoryImpl implements CrawlerRepository {
     private final DSLContext context;
     private final Random random;
 
-    private static final int MIN_CRAWLING_TIMEOUT_MINUTES = 30;
+    private static final int MIN_CRAWLING_TIMEOUT_MINUTES = 60;
     private static final int CRAWL_JITTER_MINUTES = 30;
 
     @Autowired

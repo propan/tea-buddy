@@ -36,7 +36,7 @@ public class CrawlerService {
     public static final int MAX_CRAWL_DEPTH = 5;
 
     private final Map<String, Instant> lastErrorTimestamp = new ConcurrentHashMap<>();
-    private static final Duration ERROR_NOTIFICATION_COOLDOWN = Duration.ofHours(4);
+    private static final Duration ERROR_NOTIFICATION_COOLDOWN = Duration.ofHours(8);
 
     private final List<StoreParser> parsers;
     private final CrawlerRepository crawlerRepository;
@@ -103,14 +103,15 @@ public class CrawlerService {
     }
 
     protected List<StoreListItem> fetchProducts(StoreParser parser, String storeUrl) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(storeUrl))
                 .timeout(Duration.ofSeconds(5))
-                .GET()
-                .build();
+                .GET();
+
+        parser.getHeaders().forEach(builder::header);
 
         return parser.parse(
-                this.httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body()
+                this.httpClient.send(builder.build(), HttpResponse.BodyHandlers.ofString()).body()
         );
     }
 

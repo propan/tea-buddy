@@ -12,6 +12,11 @@ import java.util.Map;
 public abstract class AbstractShopifyParser implements StoreParser {
 
     @Override
+    public Map<String, String> getHeaders() {
+        return Map.of();
+    }
+
+    @Override
     public List<StoreListItem> parse(String htmlBody) throws DataProcessingException {
         Document doc = Jsoup.parse(htmlBody);
 

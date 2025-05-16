@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +32,11 @@ public class BaduchaiParser implements StoreParser {
     @Override
     public String getStoreName() {
         return "BaduChai";
+    }
+
+    @Override
+    public Map<String, String> getHeaders() {
+        return Map.of();
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.util.List;
 
@@ -27,7 +28,11 @@ class ArtOfTeaParserTest {
 
         java.net.URL url = URI.create(parser.getStorePages().findFirst().orElse("")).toURL();
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        URLConnection connection = url.openConnection();
+
+        parser.getHeaders().forEach(connection::setRequestProperty);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         StringBuilder response = new StringBuilder();
         String inputLine;
 

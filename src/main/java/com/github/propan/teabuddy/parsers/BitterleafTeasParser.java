@@ -35,6 +35,11 @@ public class BitterleafTeasParser implements StoreParser {
     }
 
     @Override
+    public Map<String, String> getHeaders() {
+        return Map.of();
+    }
+
+    @Override
     public Stream<String> getStorePages() {
         return Stream.generate(new Supplier<>() {
             private int page = 1;

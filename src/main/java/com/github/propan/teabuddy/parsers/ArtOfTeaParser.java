@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -31,6 +31,11 @@ public class ArtOfTeaParser implements StoreParser {
     @Override
     public Stream<String> getStorePages() {
         return Stream.of(String.format("%s/latest-products", BASE_URL));
+    }
+
+    @Override
+    public Map<String, String> getHeaders() {
+        return Map.of("Cookie", "beget=begetok");
     }
 
     @Override
